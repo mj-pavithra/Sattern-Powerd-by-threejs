@@ -13,17 +13,27 @@ const radiusOfSaturn = 58.232;
 const scene = new THREE.Scene();
 
 
-const cubeTextureLoader = new THREE.CubeTextureLoader();
-const cubeMapTexture = cubeTextureLoader.load([
-  './textures/stars.png',  // Positive X
-  '/textures/stars.png',   // Negative X
-  '/textures/stars.png',    // Positive Y
-  '/textures/stars.png', // Negative Y
-  '/textures/stars.png',  // Positive Z
-  '/textures/stars.png',   // Negative Z
-]);
+// const cubeTextureLoader = new THREE.CubeTextureLoader();
+// const cubeMapTexture = cubeTextureLoader.load([
+//   './textures/stars.png',  // Positive X
+//   '/textures/stars.png',   // Negative X
+//   '/textures/stars.png',    // Positive Y
+//   '/textures/stars.png', // Negative Y
+//   '/textures/stars.png',  // Positive Z
+//   '/textures/stars.png',   // Negative Z
+// ]);
 
-scene.background = cubeMapTexture;
+// scene.background = cubeMapTexture;
+// const skyboxTextureLoader = new THREE.CubeTextureLoader();
+// const skyboxTexture = skyboxTextureLoader.load([
+//   './textures/top.png', // Positive X
+//   './textures/bottom.png', // Negative X
+//   './textures/front.png', // Positive Y
+//   './textures/back.png', // Negative Y
+//   './textures/left.png', // Positive Z
+//   './textures/right.png', // Negative Z
+// ]);
+// scene.background = skyboxTexture;
 
 const ambientLight = new THREE.AmbientLight(0xffffff); // White color
 ambientLight.intensity = 0.05; // Adjust the intensity value (0.0 to 1.0) to control brightness
@@ -102,8 +112,8 @@ function createRing(innerRadius, outerRadius, segments, thickness, tubularSegmen
     964, // segments
     12, // thickness
     764, // tubularSegments
-    "./textures/SaturnRings/saturnRings.png", // textureMap
-    "./textures/SaturnRings/saturnRings.png" // bumpMap
+    "./textures/SaturnRings/ring_texture.png", // textureMap
+    "./textures/SaturnRings/ring_texture.png" // bumpMap
   );
   ring1.rotation.x = (Math.PI * 90) / 180; // Rotate 90 degrees on the x-axis to align with Saturn's axis
   ring1.rotation.z = (Math.PI * 21) / 180; // Tilt the plane of the rings
@@ -115,8 +125,8 @@ function createRing(innerRadius, outerRadius, segments, thickness, tubularSegmen
     264, // segments
     8, // thickness
     64, // tubularSegments
-    "./textures/SaturnRings/rings_color_map.png", // textureMap
-    "./textures/SaturnRings/saturnRings.png" // bumpMap
+    "./textures/SaturnRings/ring_texture.png", // textureMap
+    "./textures/SaturnRings/ring_texture.png" // bumpMap
   );
   ring2.rotation.x = Math.PI / 2;
   ring2.rotation.z = (Math.PI * 21) / 180;
@@ -128,8 +138,8 @@ function createRing(innerRadius, outerRadius, segments, thickness, tubularSegmen
     164, // segments
     5, // thickness
     64, // tubularSegments
-    "./textures/SaturnRings/rings_color_map.png", // textureMap
-    "./textures/SaturnRings/saturnRings.png" // bumpMap
+    "./textures/SaturnRings/ring_texture.png", // textureMap
+    "./textures/SaturnRings/ring_texture.png" // bumpMap
   );
   ring3.rotation.x = Math.PI / 2;
   ring3.rotation.z = (Math.PI * 21) / 180;
@@ -141,8 +151,8 @@ function createRing(innerRadius, outerRadius, segments, thickness, tubularSegmen
     164, // segments
     2, // thickness
     64, // tubularSegments
-    "./textures/SaturnRings/rings_color_map.png", // textureMap
-    "./textures/SaturnRings/saturnRings.png" // bumpMap
+    "./textures/SaturnRings/ring_texture.png", // textureMap
+    "./textures/SaturnRings/ring_texture.png" // bumpMap
   );
   ring4.rotation.x = Math.PI / 2;
   ring4.rotation.z = (Math.PI * 21) / 180;
@@ -216,6 +226,10 @@ const tethys = createMoon(
   "./textures/Saturn/moons/tethys/tethysbumpmap.jpg" // bumpMapPath
 );
 scene.add(tethys);
+
+function rotateMoons(moon, rotationSpeed) {
+  moon.rotation.y += rotationSpeed;
+}
 
 function createAsteroid(radius, widthSegments, heightSegments, positionX, positionY, positionZ, texturePath) {
   const asteroidGeometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
