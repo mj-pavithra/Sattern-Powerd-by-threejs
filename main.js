@@ -32,8 +32,17 @@ const tethysWidthSegments = 64;
 const tethysheightSegments = 32;
 const tethysOrbitRadius = 294.619;
 
+// add ambient light
+
+
 // scene, camera and renderer
+
 const scene = new THREE.Scene();
+
+const ambientLight = new THREE.AmbientLight(0xffffff); // White color
+ambientLight.intensity = 0.02; // Adjust the intensity value (0.0 to 1.0) to control brightness
+scene.add(ambientLight);
+
 const camera = new THREE.PerspectiveCamera(
   45,
   window.innerWidth / window.innerHeight,
